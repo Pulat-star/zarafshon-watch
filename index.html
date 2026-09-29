@@ -193,6 +193,54 @@ main{position:relative}
 .mech,.dark-txt .txt,.dark-txt .lbl{text-shadow:0 0 16px rgba(8,8,10,.95),0 0 4px rgba(8,8,10,.9)}
 .single h2{text-shadow:0 0 30px rgba(231,228,223,.8)}
 
+
+/* ---------- order ---------- */
+.order-btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:13px 18px;border:1px solid currentColor;color:var(--ink);background:rgba(231,228,223,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,color .3s}
+.order-btn:hover{background:var(--ink);color:#f3f1ec}
+.order-btn:focus-visible{outline:2px solid var(--lapis);outline-offset:3px}
+.order-btn i{width:6px;height:6px;border-radius:50%;background:var(--saffron);display:block}
+#order-top{position:fixed;top:calc(env(safe-area-inset-top,0px) + clamp(12px,2.2vw,28px));right:clamp(16px,2vw,40px);z-index:40;opacity:0;visibility:hidden;transition:opacity .8s,visibility .8s}
+#order-top.ready{opacity:1;visibility:visible}
+#order-top.on-dark{color:#f3f1ec;background:rgba(20,20,22,.5)}
+#order-top.on-dark:hover{background:#f3f1ec;color:var(--ink)}
+.colors-info .order-btn{margin-top:18px;align-self:flex-start}
+.foot-cta{position:absolute;left:50%;bottom:13vh;transform:translateX(-50%)}
+.foot-cta .order-btn{font-size:12px;padding:16px 26px}
+#order{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(12,12,14,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#order.open{display:flex}
+.om{position:relative;width:min(480px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:#F2F0EC;color:var(--ink);padding:clamp(22px,4vw,36px);border-radius:3px;box-shadow:0 40px 90px -30px rgba(0,0,0,.55)}
+.om h2{margin:0 0 6px;font:400 clamp(24px,3vw,32px)/1.1 var(--display);text-transform:uppercase}
+.om .sub{margin:0 0 26px;font-size:14px;line-height:1.45;color:#5f5c57;max-width:40ch}
+.om form{display:flex;flex-direction:column;gap:18px}
+.om label,.om legend{display:block;font:400 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#6d6a65;margin-bottom:8px}
+.om input[type=text],.om input[type=tel],.om textarea{width:100%;box-sizing:border-box;font:400 16px/1.3 var(--body);color:var(--ink);background:#fff;border:1px solid rgba(19,19,18,.18);border-radius:2px;padding:13px 14px;outline:none;transition:border-color .2s}
+.om input:focus,.om textarea:focus{border-color:var(--lapis)}
+.om input[aria-invalid=true]{border-color:#b3261e}
+.om textarea{resize:vertical;min-height:70px}
+.om fieldset{border:0;margin:0;padding:0}
+.fins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fins label{margin:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 4px;border:1px solid rgba(19,19,18,.14);border-radius:2px;font:400 10px/1.2 var(--mono);letter-spacing:.06em;text-align:center;color:var(--ink);transition:border-color .2s,background .2s}
+.fins input{position:absolute;opacity:0;pointer-events:none}
+.fins .sw-dot{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.fins input:checked + label{border-color:var(--ink);background:#fff}
+.fins input:focus-visible + label{outline:2px solid var(--lapis);outline-offset:2px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.om .submit{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:17px;background:var(--ink);color:#f3f1ec;transition:opacity .2s}
+.om .submit:focus-visible{outline:2px solid var(--lapis);outline-offset:3px}
+.om .submit[disabled]{opacity:.55;cursor:progress}
+.om .err{margin:0;color:#b3261e;font-size:13px;min-height:1em}
+.om .fine{margin:0;font-size:12px;color:#77736e}
+.om .x{all:unset;cursor:pointer;position:absolute;top:14px;right:14px;width:38px;height:38px;display:grid;place-items:center;font-size:16px;border-radius:50%}
+.om .x:hover{background:rgba(19,19,18,.06)}
+.om .x:focus-visible{outline:2px solid var(--lapis)}
+.om .done{display:none;flex-direction:column;gap:14px}
+.om.sent form,.om.sent .sub{display:none}
+.om.sent .done{display:flex}
+.om .done .id{font:400 13px/1 var(--mono);letter-spacing:.08em;color:#5f5c57}
+body.modal-open #cursor{display:none}
+body.has-cursor.modal-open, body.has-cursor.modal-open *{cursor:auto!important}
+body.has-cursor .order-btn, body.has-cursor .order-btn *{cursor:pointer!important}
+
 /* cursor */
 #cursor{position:fixed;left:0;top:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .4s}
 #cursor.visible{opacity:1}
@@ -208,6 +256,8 @@ main{position:relative}
 #cursor .sw-dot{width:26px;height:26px;border-radius:50%;margin:0 auto 6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 
 @media (max-width:760px){
+  .foot-cta{bottom:15vh;width:max-content;max-width:calc(100vw - 32px)}
+  .fins{grid-template-columns:repeat(2,1fr)}
   .giant,.bottom-info{padding-left:6vw}
   .giant{font-size:15vw}
   .bottom-info{padding-right:6vw}
@@ -309,6 +359,7 @@ main{position:relative}
     <div class="colors-info">
       <div class="counter"><b class="stack" id="fin-counter"></b> / 04</div>
       <div class="name stack" id="fin-names"></div>
+      <button type="button" class="order-btn" data-ui data-order><i></i>Reserve this finish</button>
     </div>
     <div class="texts-w" id="fin-texts"></div>
   </div>
@@ -316,6 +367,7 @@ main{position:relative}
 
 <div class="ov" id="ov-footer">
   <div class="foot-title">ZARAFSHON</div>
+  <div class="foot-cta" data-fade><button type="button" class="order-btn" data-ui data-order><i></i>Reserve yours · 250 pieces</button></div>
   <div class="foot-row" data-fade><span>ZR·42 · Limited to 250 pieces</span><span>Designed in Samarkand · 2026</span><button type="button" id="to-top" data-ui>Back to top</button></div>
 </div>
 
@@ -380,6 +432,32 @@ main{position:relative}
   <div style="height:80vh"></div>
   <section class="sec" data-s="footer" data-cursor="hold" style="height:170vh"></section>
 </main>
+
+<button type="button" class="order-btn" id="order-top" data-ui data-order><i></i>Reserve ZR·42</button>
+
+<div id="order" role="dialog" aria-modal="true" aria-labelledby="order-title" data-ui>
+  <div class="om" id="om">
+    <button type="button" class="x" id="order-close" aria-label="Close">✕</button>
+    <h2 id="order-title">Reserve your ZR·42</h2>
+    <p class="sub">Leave your phone number and we will call you within one working day to confirm the finish, size and delivery.</p>
+    <form id="order-form" novalidate>
+      <div><label for="o-name">Name</label><input type="text" id="o-name" name="name" autocomplete="name" maxlength="60" required></div>
+      <div><label for="o-phone">Phone</label><input type="tel" id="o-phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="+998 90 123 45 67" required></div>
+      <fieldset><legend>Finish</legend><div class="fins" id="o-fins"></div></fieldset>
+      <div><label for="o-note">Note <span style="text-transform:none;letter-spacing:0">(optional)</span></label><textarea id="o-note" name="note" maxlength="300" rows="2" placeholder="Best time to call, wrist size…"></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="o-web">Website</label><input type="text" id="o-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <p class="err" id="o-err" role="alert"></p>
+      <button type="submit" class="submit" id="o-submit">Send request</button>
+      <p class="fine">We only use your number to contact you about this order.</p>
+    </form>
+    <div class="done" aria-live="polite">
+      <h2>Thank you</h2>
+      <p class="sub" style="display:block;margin:0">We have your request and will call <b id="o-done-phone"></b> within one working day.</p>
+      <div class="id" id="o-done-id"></div>
+      <button type="button" class="submit" id="order-ok">Back to the watch</button>
+    </div>
+  </div>
+</div>
 
 <div id="cursor" aria-hidden="true">
   <div class="inside">
@@ -1239,7 +1317,7 @@ function buildScroll() {
     t.fromTo('#ov-footer', { autoAlpha: 0 }, { autoAlpha: 1, duration: .1 * D }, .1 * D);
     t.fromTo(fchars, { x: '-100%' }, { x: 0, ease: 'power3.out', duration: D * .35, stagger: D * .035 }, .1 * D);
     t.fromTo(fchars, { opacity: 0 }, { opacity: 1, duration: D * .2, stagger: D * .035 }, .1 * D);
-    t.fromTo('#ov-footer .foot-row', { opacity: 0 }, { opacity: 1, duration: .15 * D }, .7 * D);
+    t.fromTo('#ov-footer .foot-row, #ov-footer .foot-cta', { opacity: 0 }, { opacity: 1, duration: .15 * D }, .7 * D);
   }, { end: 'bottom bottom' });
 
   ScrollTrigger.refresh();
@@ -1247,6 +1325,7 @@ function buildScroll() {
 
 /* ================= RENDER LOOP ================= */
 const tmpV = new THREE.Vector3();
+const orderTop = $('#order-top');
 const bgDark = $('#bgDark'), s1 = $('#s1'), s2 = $('#s2');
 const plabs = () => $$('#labels .plab');
 let labelEls = [];
@@ -1296,6 +1375,7 @@ function frame(time) {
   particles.rotation.set(.3 + mouse.sy * .05, mouse.sx * .08, 0);
   bgDark.style.opacity = S.dark;
   cursor.el.classList.toggle('on-dark', S.dark > .5);
+  orderTop.classList.toggle('on-dark', S.dark > .5);
 
   // disassembly labels follow parts
   if (S.exA > .02) {
@@ -1317,6 +1397,60 @@ function frame(time) {
   }
   renderer.render(scene, camera);
 }
+
+
+/* ================= ORDER FORM ================= */
+const ORDER_API = 'https://zarafshon-orders-production.up.railway.app/api/order';
+const order = { el: $('#order'), box: $('#om'), form: $('#order-form'), err: $('#o-err'), submit: $('#o-submit'), last: null };
+$('#o-fins').innerHTML = FIN_IDS.map(id => `<input type="radio" name="finish" id="o-f-${id}" value="${id}"><label for="o-f-${id}"><span class="sw-dot" style="background:${FIN[id].color}"></span>${FIN[id].name.split(' ').pop()}</label>`).join('');
+function openOrder(e) {
+  order.last = e && e.currentTarget || document.activeElement;
+  order.box.classList.remove('sent'); order.err.textContent = '';
+  $(`#o-f-${current}`).checked = true;
+  const ph = $('#o-phone'); if (!ph.value) ph.value = '+998 ';
+  order.el.classList.add('open'); document.body.classList.add('modal-open');
+  lenis && lenis.stop();
+  gsap.fromTo(order.box, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'power3.out' });
+  gsap.fromTo(order.el, { opacity: 0 }, { opacity: 1, duration: .4 });
+  setTimeout(() => $('#o-name').focus(), 50);
+}
+function closeOrder() {
+  if (!order.el.classList.contains('open')) return;
+  gsap.to(order.el, { opacity: 0, duration: .3, onComplete: () => { order.el.classList.remove('open'); document.body.classList.remove('modal-open'); lenis && lenis.start(); order.last && order.last.focus && order.last.focus(); } });
+}
+$$('[data-order]').forEach(b => b.addEventListener('click', openOrder));
+$('#order-close').addEventListener('click', closeOrder);
+$('#order-ok').addEventListener('click', closeOrder);
+order.el.addEventListener('click', e => { if (e.target === order.el) closeOrder(); });
+addEventListener('keydown', e => {
+  if (!order.el.classList.contains('open')) return;
+  if (e.key === 'Escape') closeOrder();
+  if (e.key === 'Tab') { const f = $$('button, input:not([tabindex="-1"]), textarea', order.box).filter(x => x.offsetParent); const a = f[0], z = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
+});
+const phoneDigits = v => v.replace(/\D/g, '');
+function phoneOk(v) { const d = phoneDigits(v); return d.length === 9 || (d.length === 12 && d.startsWith('998')) || (v.trim().startsWith('+') && d.length >= 10 && d.length <= 15); }
+$('#o-phone').addEventListener('input', e => e.target.setAttribute('aria-invalid', 'false'));
+$('#o-name').addEventListener('input', e => e.target.setAttribute('aria-invalid', 'false'));
+order.form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const fd = new FormData(order.form), data = Object.fromEntries(fd.entries());
+  order.err.textContent = '';
+  if ((data.name || '').trim().length < 2) { $('#o-name').setAttribute('aria-invalid', 'true'); order.err.textContent = 'Enter your name.'; $('#o-name').focus(); return; }
+  if (!phoneOk(data.phone || '')) { $('#o-phone').setAttribute('aria-invalid', 'true'); order.err.textContent = 'Enter a phone number, for example +998 90 123 45 67.'; $('#o-phone').focus(); return; }
+  order.submit.disabled = true; order.submit.textContent = 'Sending…';
+  try {
+    const r = await fetch(ORDER_API, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || 'We could not send your request. Please try again.');
+    $('#o-done-phone').textContent = data.phone.trim();
+    $('#o-done-id').textContent = 'Request ' + j.id;
+    order.box.classList.add('sent'); order.form.reset();
+    setTimeout(() => $('#order-ok').focus(), 50);
+  } catch (err) {
+    order.err.textContent = err.message === 'Failed to fetch' ? 'No connection. Check your internet and try again.' : err.message;
+  } finally { order.submit.disabled = false; order.submit.textContent = 'Send request'; }
+});
 
 /* ================= BOOT ================= */
 const tLines = buildLines($('#timeless-lines'), 4);
@@ -1361,6 +1495,7 @@ async function boot() {
   const open = gsap.timeline({ delay: .5 });
   open.to(ld, { opacity: 0, duration: 1, ease: 'power2.inOut', onComplete: () => ld.remove() }, 0);
   open.to(introK, { v: 1, duration: 1.6, ease: 'power3.out' }, .2);
+  open.add(() => $('#order-top').classList.add('ready'), 1.4);
   open.add(() => $('#picker-intro').classList.add('active'), .4);
   open.fromTo(introTitleChars, { x: '-100%' }, { x: 0, ease: 'power3.out', duration: 1.2, stagger: .12 }, .6);
   open.to('#ov-intro [data-fade]', { opacity: 1, duration: 1.5, ease: 'power3.inOut', stagger: .4 }, 1.2);
